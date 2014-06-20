@@ -1,0 +1,29 @@
+	<!DOCTYPE html>
+    <html>
+      <head>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script>
+      $(document).ready(function(){
+           $("#hidden").fadeIn(3000,function(){
+            alert("fadeIn() method is finished!");
+           });
+        });
+        function btntest_onclick() 
+        {
+          $.getJSON('http://bootcamp.aws.af.cm/welcome/tunombre', null, function(data){
+          $("#resp").html(data.response);
+          
+        });        }
+      </script>
+
+      <meta charset="utf-8" />
+      <title>Topic one</title>
+      </head>
+      <body>
+
+        <p>hello world</p>
+        <input id="btntest" type="button" value="Check" 
+       onclick="return btntest_onclick()" />
+       <div id="resp">tu nombre</div>
+    </body>
+    </html>
