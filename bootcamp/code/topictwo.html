@@ -1,0 +1,62 @@
+	<!DOCTYPE html>
+    <html>
+      <head>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ 
+
+      <meta charset="utf-8" />
+      <title>Topic two</title>
+      </head>
+      <body>
+
+
+
+        <p id="demo"></p>
+        <p id="demo2"></p>
+        
+
+        <script>
+          function MovieObserver()
+          {
+            this.playing=playing;
+            this.stopping=stopping;
+          }
+          function playing(){
+            this.playing.listenTo(Movie, 'change');
+          }
+          function stopping(){
+            this.stopping.listenTo(Movie, 'change');
+          }
+          function Movie()
+          {
+            this.map={};
+            this.get=get;
+            this.put=put;
+          }
+
+          function put(clave,valor)
+          {
+           this.map[clave]=valor;
+          }
+
+          function get(clave){
+            return this.map[clave];
+          }
+          function DownloadableMovie(){
+            Movie.call(this);
+            this.download = download;
+          }
+          function download(){
+            
+          }
+          DownloadableMovie.prototype = new Movie();
+          DownloadableMovie.prototype.constructor = DownloadableMovie; 
+          var movie = new Movie();
+          movie.put("movie1","Inception");
+          movie.put("movie2","The godfather");
+          document.getElementById("demo").innerHTML = movie.get("movie1");
+          document.getElementById("demo2").innerHTML = movie.get("movie2");
+          movie.listenTo(other, event, callback) 
+          </script>
+    </body>
+    </html>
