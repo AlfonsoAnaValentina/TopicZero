@@ -1,0 +1,92 @@
+	<!DOCTYPE html>
+    <html>
+      <head>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script type="text/javascript" src="scripts/handlebars-v1.3.0.js"></script>
+      <script type="text/javascript" src="scripts/Underscore.js"></script>
+      <script src="dust-full-0.3.0.min.js"></script>
+      <script type="text/javascript" src="scripts/mustache.js" ></script>
+      <script data-main="scripts/main" src="scripts/require.js"></script>
+      <meta charset="utf-8" />
+      <title>Topic four</title>
+   
+   </head>
+<body>
+ 
+<h1>
+Professional profile
+</h1>
+ 
+<script type="text/template" class="template">
+ 
+<h2>
+<%- rc.listTitle %>
+</h2>
+ 
+<ul>
+<% _.each( rc.listItems, function( listItem ){ %>
+ 
+<li>
+ 
+<%- listItem.name %>
+ 
+<% if ( listItem.Developer ){ %>
+<em>* Software developer</em>
+<% } %>
+ 
+</li>
+ 
+<% }); %>
+
+</ul>
+
+
+
+ 
+<% var showFootnote = _.any(
+_.pluck( rc.listItems, "Developer" )
+); %>
+ 
+ 
+<% if ( showFootnote ){ %>
+ 
+<p style="font-size: 12px ;">
+ 
+<em>* developer</em>
+ 
+</p>
+ 
+<% } %>
+ 
+</script>
+
+<script type="text/javascript">
+ 
+ 
+
+_.templateSettings.variable = "rc";
+
+var template = _.template(
+$( "script.template" ).html()
+);
+//<a href="topicfour.json" target="_blank">Open JSON file</a>
+//<span id="results"></span>
+
+var templateData = {
+listTitle: "Software developer",
+listItems: [
+{
+name: "Alfonso, Ana",
+Developer: true
+
+}
+]
+};
+
+$( "h1" ).after(
+template( templateData )
+);
+ 
+ 
+</script>
+</body>
